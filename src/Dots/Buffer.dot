@@ -1,0 +1,16 @@
+digraph Buffer{
+ //label="Buffer"
+ bgcolor ="#f9ebf2"
+ byte[label=<<TABLE CELLSAPCE="0" frame="void"><TR><TD WIDTH="10" HETIGHT="3" FIXEDSIZE="TRUE">byte[]</TD></TR></TABLE>>,shape="box"]
+
+ FileInputStream[label="FileInputStream,FileOutputStream,RandomAccessFile"]
+ FileChannel[label="FileChannle",shape="box"]
+ ByteBuffer[label="ByteBuffer[]","shape"="box"]
+ FileInputStream->FileChannel[label="getChannel()",dir="forword"]
+ FileChannel->ByteBuffer[label="write(ByteBuffer)",dir="forword"]
+ ByteBuffer->byte[label=",array(),get(byte[])",dir="forword"]
+ byte->ByteBuffer[label="wrap(byte[])",dir="forword"]
+ ByteBuffer->FileChannel[label="read()",dir="forword"]  
+
+
+}

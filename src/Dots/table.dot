@@ -1,0 +1,105 @@
+digraph Buffer {
+    bgcolor="#f0da9b"
+    node[shape=none]
+    compound = true;
+    nodesep=0.5
+    ranksep=0.5
+    fontsize=20
+
+
+    margin=0
+    subgraph cluster_FF{
+    style=invis;
+    node[shape=box]
+    FIS[label="FileInputSystem FileOutStream"]
+    UFSN[label="Underlying FileSystem or Network"]
+    Socket[label="Socket ServerSocket"]
+    FileChannel[label="FileChannel"]
+    ByteBuffer[label="ByteBuffer"]
+    MBB[label="MappedByteBuffer"]
+    {rank=same;Socket,FIS}
+    UFSN -> {FIS,Socket}
+    FIS -> FileChannel[label="getChannel()"]
+    {rank=same;ByteBuffer,FileChannel}
+    FileChannel -> ByteBuffer[label="write(ByteBuffer)"]
+    MBB -> ByteBuffer
+    FileChannel -> MBB
+    byte[shape=none, margin=0, label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="30" CELLPADDING="0">
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="byte">byte[]</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="char">char[]</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="db">double[]</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="fl">float[]</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="int">int[]</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="long">long[]</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="short">short[]</TD>
+    </TR>
+    </TABLE>>];
+    Buffer[shape=none, margin=0, label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="30" CELLPADDING="0">
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="B">&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="CB">CharBuffer</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="DB">DoubleBuffer</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="FB">FloatBuffer</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="IB">IntBuffer</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="LB">LongBuffer</TD>
+    </TR>
+    <TR>
+      <TD HETIGHT="30" WIDTH="100" FIXEDSIZE="TRUE" PORT="SB">ShortBuffer</TD>
+    </TR>
+    </TABLE>>];
+    {rank =same;byte,Buffer}
+    {
+      byte:char -> Buffer:CB[label="wrap(byte[])"];
+      byte:db -> Buffer:DB[label="wrap(double[])"];
+      //Buffer:DB -> byte:db[label="0"];
+      byte:int -> Buffer:IB[label="wrap(int[])"];
+      byte:long -> Buffer:LB[label="wrap(xx[])"];
+      byte:short -> Buffer:SB[label="wrap(xx[])"];
+      //byte:fl -> Buffer:FB//[label="warp(xx[])"];
+    }
+  }
+ByteBuffer -> byte:byte
+ByteBuffer -> Buffer:CB:e[label="asCharBuffer()"]
+ByteBuffer -> Buffer:DB:e[label="xxDoublexx()"]
+ByteBuffer -> Buffer:FB:e[label="xxFloatxx()"]
+ByteBuffer -> Buffer:IB:e[label="xxIntxx()"]
+ByteBuffer -> Buffer:LB:e[label="xxLongxx()"]
+ByteBuffer -> Buffer:SB:e[label="xxasShortxx()"]
+//float[shape=box,label="float"]
+/*FloatBuffer[shape=box,label="FloatBuffer"]
+{rank=same;float,FloatBuffer}
+  float ->FloatBuffer[label="writefloat()"]
+
+*/
+{
+
+
+}
+
+
+}

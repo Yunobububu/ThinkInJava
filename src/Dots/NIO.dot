@@ -1,0 +1,107 @@
+digraph Buffer {
+    bgcolor="#f0da9b"
+    node[shape=none]
+    compound=true;
+    nodesep=0.75
+    ranksep=0.15
+    fontsize=20
+    rankdir=FB
+
+
+    margin=0
+    subgraph cluster_FF{
+    style=invis;
+    node[shape=box]
+    FIS[label="FileInputSystem \n FileOutStream\n RandomAccessFile"]
+    UFSN[label="Underlying FileSystem or Network"]
+    Socket[label="Socket ServerSocket\nDatagramScoket\nServerSocket"]
+    FileChannel[label="FileChannel"]
+    ByteBuffer[label="ByteBuffer"]
+    MBB[label="MappedByteBuffer"]
+    {rank=same;Socket,FIS}
+    UFSN -> {FIS,Socket}
+    FIS -> FileChannel:head[label="getChannel()"]
+    {rank=same;ByteBuffer,FileChannel}
+    FileChannel -> ByteBuffer:head[label="write(ByteBuffer)"]
+
+    FileChannel -> MBB:head
+    MBB -> ByteBuffer:w
+  }
+
+  subgraph cluster_Buffer{
+  style=invis;
+  //nodesep=0.15
+  //rankdir="LR"
+    {
+      node[shape=box,fixedsize=true,width=1,height=0.5,fontsize=15]
+      null1[label=""][style=invis]
+
+
+      byte[label="byte[]"]
+      null1 -> byte[style=invis]
+      //ByteBuffer ->byte:head
+      //byte -> ByteBuffer[label="array()"]
+      char[label="char[]" ]
+      double[label="double[]"]
+      float[label="float[]"]
+      int[label="int[]"]
+      long[label="long[]"]
+      short[label="short[]"]
+      MBB -> null1[style=invis]
+      ByteBuffer -> null1:w[style=invis]
+      byte -> char -> double -> float -> int -> long -> short[style=invis]
+      //{rank=same;null1,byte}
+      ByteBuffer -> byte:e[label="wrap(byte[])"]
+
+    }
+    {
+      //创建xxxBuffer序列和xx[]对齐
+      node[shape=box,fixedsize=true,width=1.8,height=0.5,fontsize=15]
+      CharBuffer[label="CharBuffer"]
+      DoubleBuffer[label="DoubleBuffer"]
+      FloatBuffer[label="FloatBuffer"]
+      IntBuffer[label="IntBuffer"]
+      LongBuffer[label="LongBuffer"]
+      ShortBuffer[label="ShortBuffer"]
+    }
+    {
+      null2[label=""][style=invis]
+      {rank=same;byte,null2}
+        byte -> null2[style=invis]
+        null2->CharBuffer->DoubleBuffer->FloatBuffer->IntBuffer
+        ->LongBuffer->ShortBuffer[style=invis]
+      //wrap()方法
+      byte -> null2[style=invis]
+      {rank=same;char,CharBuffer}
+      char -> CharBuffer[label="wrap(char[])"]
+      CharBuffer ->char[label="array()/get(char[])"]
+      {rank=same;double,DoubleBuffer}
+      double -> DoubleBuffer[label="wrap(double[])"]
+      DoubleBuffer ->double[label="array()/get(double[])"]
+      {rank=same;float,FloatBuffer}
+      float -> FloatBuffer[label="wrap(float[])"]
+      FloatBuffer ->float[label="array()/get(float[])"]
+      {rank=same;int,IntBuffer}
+      int -> IntBuffer[label="wrap(int[])"]
+      IntBuffer ->int[label="array()/get(int[])"]
+      {rank=same;long,LongBuffer}
+      long -> LongBuffer[label="wrap(long[])"]
+      LongBuffer ->long[label="array()/get(long[])"]
+      {rank=same;short,ShortBuffer}
+      short -> ShortBuffer[label="wrap(short[])"]
+      ShortBuffer ->short[label="array()/get(short[])"]
+    }
+    //ByteBuffer to array
+    {
+      ByteBuffer -> CharBuffer:e[label="asCharBuffer"]
+      ByteBuffer -> DoubleBuffer:e[label="asDoubleBuffer"]
+      ByteBuffer -> IntBuffer:e[label="asIntBuffer"]
+      ByteBuffer -> FloatBuffer:e[label="asFloatBuffer"]
+      ByteBuffer -> LongBuffer:e[label="asLongBuffer"]
+      ByteBuffer -> ShortBuffer:e[label="asShortBuffer"]
+
+    }
+
+  }
+
+}
