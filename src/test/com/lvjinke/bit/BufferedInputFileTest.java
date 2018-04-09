@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.StringReader;
 
 /** 
@@ -17,11 +19,21 @@ import java.io.StringReader;
 public class BufferedInputFileTest { 
 
 @Before
-public void before() throws Exception { 
+public void before() throws Exception {
+    //test FileNameFilter
+    File file = new File("./src/com/lvjinke/bit");
+    //FilenameFilter filenameFilter = new DirFilter();
+
 } 
 
 @After
-public void after() throws Exception { 
+public void after() throws Exception {
+    //get a list of files under the filepath;
+    File files= new File(".");
+    String[] f = files.list();
+    for(String s: f){
+        System.out.println(s);
+    }
 } 
 
 /** 
