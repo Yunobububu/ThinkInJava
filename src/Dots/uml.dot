@@ -27,5 +27,21 @@ digraph uml {
     I -> J:w[label="Inherit\n(实现) \n is-A",arrowtail="empty",dir=back,style="dashed"]
     I -> J:e[label="Inherit\n(继承) \n is-A",dir=back]
   }
+  subgraph cluster_line{
+  ranksep = 3
+  style=invis;
+  edge[penwidth=2.5,style=dashed,color="#F4606C"]
+  //M -> R
+  M[style=invis]
+  N[style=invis]
+  R[style=invis]
+  M -> N[dir=back,label="Weak Class Relationship",]
+  N -> R[label="Strong Class Relationship",]
+  {rank=same;M,N,R}
+  //E -> N[style=invis]
+  A -> M[style=invis]
+  //J -> R[style=invis]
+}
+
 
 }
