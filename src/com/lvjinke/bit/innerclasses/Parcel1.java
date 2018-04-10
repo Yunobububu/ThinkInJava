@@ -41,6 +41,10 @@ public class Parcel1 {
             System.out.println(seletor.current());
             seletor.next();
         }
+        //factories test
+        Factories factories = new Factories();
+        factories.serviceConsumer(Implentation1.factory);
+        factories.serviceConsumer(Implentation2.factory);
     }
 
 }
