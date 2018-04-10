@@ -29,7 +29,7 @@
 #### 流程图
 * `a -- b`无向图
 * `a --{b,c,d}`同时指向abc
-* `a -> b:head[label=“”,style="",color="",arrayhead=""]`
+* `a -> b:head[label=“”,style="",color="",arrayhead="",dir="both|back|forward"`
 * 可以指定从[哪个方向](https://blog.csdn.net/gyj072001/article/details/78350077)指向b;
 * 可以用`{}`统一设置多个节点相同的属性;
 * 节点支持html风格：

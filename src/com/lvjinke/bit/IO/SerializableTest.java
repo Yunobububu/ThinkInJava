@@ -1,4 +1,4 @@
-package com.lvjinke.bit;
+package com.lvjinke.bit.IO;
 
 public class SerializableTest {
 

@@ -1,12 +1,11 @@
 package test.com.lvjinke.bit; 
 
-import com.lvjinke.bit.BufferedInputFile;
+import com.lvjinke.bit.IO.BufferedInputFile;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.StringReader;
 
 /** 

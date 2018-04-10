@@ -1,6 +1,6 @@
 package test.com.lvjinke.bit; 
 
-import com.lvjinke.bit.FormatedMemoryInput;
+import com.lvjinke.bit.IO.FormatedMemoryInput;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After; 
