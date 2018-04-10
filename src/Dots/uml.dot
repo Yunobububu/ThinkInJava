@@ -1,6 +1,6 @@
 digraph uml {
   /* Entities */
-  bgcolor="#EECFA1"
+  bgcolor="#fad8be"
   node  [shape="box" ]
   rankdir=BT
   B -> A [arrowhead=empty label="继承"]
