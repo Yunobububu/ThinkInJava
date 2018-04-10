@@ -1,0 +1,37 @@
+digraph IO{
+  bgcolor="#b2d6ec"
+  node[shape=box width=2,fixedsize="true"]
+  labeljust="left"
+  compound=true
+  ranksep=0.5
+  margin=0
+  //nodesep=0.25
+  subgraph cluster_InputStream{
+  style=invis;
+  InputStream -> {FileInputStream,PipedInputStream,StringBufferInputStream,FilterInputStream,ByteArrayInputStream,ObjectInputStream}[dir="back"]
+  FilterInputStream -> {DataInputStream,BufferedInputStream}[dir="back"]
+  ISbottom[shape=box,fixedsize="true",height=0.01,width=6,style=invis]
+  DataInputStream ->ISbottom[style=invis]
+  }
+  subgraph cluster_OutputStream{
+  OStop[fixedsize=true,height=0.01,width=6,style=invis]
+  OStop ->OutputStream[style=invis]
+  style=invis;
+  OutputStream -> {FileOutputStream,FilterOutputStream,ByteArrayOutputStream}[dir="back"]
+  OSbottom[shape=box,fixedsize="true",height=0.01,width=6,style=invis]
+}
+  subgraph cluster_Reader{
+  style=invis;
+  Rtop[fixedsize=true,height=0.01,width=6,style=invis]
+  Reader -> {FileReader,BufferedReader,StringReader,InputStreamReader}[dir="back"]
+  //Rbottom[shape=box,fixedsize="true",height=0.01,width=4]
+  Rtop -> Reader[style=invis]
+  FilterOutputStream -> OSbottom[style=invis]
+}
+
+  {
+    edge[style=invis]
+    ISbottom ->OStop
+    OSbottom ->Rtop
+  }
+}

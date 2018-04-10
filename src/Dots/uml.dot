@@ -1,0 +1,15 @@
+digraph uml {
+  /* Entities */
+  bgcolor="#EECFA1"
+  node  [shape="box" ]
+  rankdir=BT
+  B -> A [arrowhead=empty label="继承"]
+  D -> C [label="实现",style="dashed",arrowhead="empty"]
+  F -> E [label="依赖",style="dashed"]
+  H -> G [label="关联"]
+  J -> I [label="聚合",arrowhead="ediamond"]
+  //i -> j[arrowhead="empty"]
+  //edge[dir=back]
+  /* Relationships */
+
+}
