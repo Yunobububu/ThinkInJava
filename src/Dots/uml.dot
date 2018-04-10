@@ -1,15 +1,31 @@
 digraph uml {
   /* Entities */
+  //dir和arrowhead不兼容，调整arrowtail即可
   bgcolor="#fad8be"
   node  [shape="box" ]
-  rankdir=BT
-  B -> A [arrowhead=empty label="继承"]
-  D -> C [label="实现",style="dashed",arrowhead="empty"]
-  F -> E [label="依赖",style="dashed"]
-  H -> G [label="关联"]
-  J -> I [label="聚合",arrowhead="ediamond"]
-  //i -> j[arrowhead="empty"]
-  //edge[dir=back]
-  /* Relationships */
+  subgraph cluster_Dependency{
+    style = invis;
+    B -> A[label="Dependency\n(依赖) \n use-A",arrowtail="open",style="dashed",dir=back]
+  }
+  subgraph cluster_Association{
+    style = invis;
+    D -> C[label="Association\n(关联) \n has-A",arrowtail="open",dir=back]
+  }
+  subgraph cluster_Aggregation{
+    rankdir=TB;
+    style = invis;
+    F -> E[label="Aggregation\n(聚合) \n has-A",arrowhead="ediamond"]
+  }
+  subgraph cluster_Composition{
+    rankdir=TB;
+    style = invis;
+    G -> H[label="Composition\n(组合) \n has-A",arrowhead="diamond"]
+  }
+  subgraph cluster_Inheritance{
+    rankdir=TB;
+    style = invis;
+    I -> J:w[label="Inherit\n(实现) \n is-A",arrowtail="empty",dir=back,style="dashed"]
+    I -> J:e[label="Inherit\n(继承) \n is-A",dir=back]
+  }
 
 }
