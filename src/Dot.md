@@ -62,6 +62,7 @@ digraph btree{
     node0:f2 -> node2:f1;
 }//其中，用|隔开的串会在绘制出来的节点中展现为一条分隔符，用<>括起来的串称为锚点。
 ```
+* [不同箭头形状](https://wenku.baidu.com/view/be4a0bf32cc58bd63186bd5c.html)
 
 ### 参考链接：
 * 1:https://blog.csdn.net/sd10086/article/details/52979462;
