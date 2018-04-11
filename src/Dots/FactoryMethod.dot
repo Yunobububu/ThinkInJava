@@ -1,0 +1,67 @@
+digraph FM {
+bgcolor="#E6CEAC"
+style=invis;
+node[shape=none]
+nodesep=1.5
+margin=0;
+
+P[label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+ <TR>
+   <TD PORT="0">Product</TD>
+ </TR>
+ <TR>
+   <TD PORT="1"></TD>
+ </TR>
+ <TR>
+   <TD PORT="2"></TD>
+ </TR>
+</TABLE>>];
+C[label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+ <TR>
+   <TD PORT="0">Creator</TD>
+ </TR>
+ <TR>
+   <TD PORT="1"></TD>
+ </TR>
+ <TR>
+   <TD PORT="2">+FactoryMethod()</TD>
+ </TR>
+</TABLE>>];
+CC[label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+ <TR>
+   <TD PORT="one">Concrete Creator</TD>
+ </TR>
+ <TR>
+   <TD PORT="two"></TD>
+ </TR>
+ <TR>
+   <TD PORT="three"></TD>
+ </TR>
+</TABLE>>];
+
+
+CP[label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+ <TR>
+   <TD PORT="fir">Concrete Product</TD>
+ </TR>
+ <TR>
+   <TD PORT="snd"></TD>
+ </TR>
+ <TR>
+   <TD PORT="thir"></TD>
+ </TR>
+</TABLE>>];
+{rank=same;P,C}
+//P -> C[style=invis]
+P:2 -> CP:fir[dir=back,arrowtail="empty"]
+C ->CC[style=invis]
+CC:one -> C:2[arrowhead="empty"]
+//CP:snd-> CC:two:w[style="dashed",dir="back",arrowtail="open"]
+{rank=same;CP,CC}
+CP -> CC[style="dashed",dir="back",arrowtail="open"]
+
+}
