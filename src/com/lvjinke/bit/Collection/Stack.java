@@ -1,5 +1,6 @@
 package com.lvjinke.bit.Collection;
 //Making a Stack from a LinkedList
+//https://www.mygalgame.com/cangyejiadeshuangbaotaigushi.html
 
 import java.util.LinkedList;
 
