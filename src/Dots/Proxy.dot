@@ -1,0 +1,15 @@
+digraph proxy{
+  bgcolor = "#f0da9b"
+  node[shape = box,width=1.8,HETIGHT=1]
+  //ranksep=0.5
+  nodesep=0.7
+
+  DynamicProxy ->{IAdvice,InvocationHandler}[style=dashed,arrowhead=open]
+  Client ->Subject
+  Client -> DynamicProxy
+  {rank=same;DynamicProxy,Client}
+  IAdvice -> BeforeAdvice[dir="back",arrowtail="empty",style="dashed"]
+  InvocationHandler -> MyInvocationHandler[dir="back",arrowtail="empty",style="dashed"]
+  Subject -> ConcreteSbuject[dir="back",arrowtail="empty",style="dashed"]
+
+}

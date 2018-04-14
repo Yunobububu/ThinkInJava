@@ -9,7 +9,7 @@ public class Groups {
             "I'll hold no land,marry n_o wife,father no children,\n " +
             "I'm the sword of the night,shelter of the Conutrym\n" +
             "I'll watch from the day until my last day";
-    private String regex = "[a-zA-Z]+";
+    private String regex = "\\b\\w+";
 
     public void execute(){
         String xs = Arrays.toString(poem.split(","));

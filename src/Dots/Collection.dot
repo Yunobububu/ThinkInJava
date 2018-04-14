@@ -1,0 +1,26 @@
+digraph Collection{
+  bgcolor="#E6CEAC"
+  style="invis"
+  node[shape=box]
+  {
+    edge[dir=back]
+    Collection ->{List,Set,Queue}[style="dashed",arrowtail="empty"]
+    List ->{ArrayList,LinkedList}[style="dashed",arrowtail="empty"]
+    Set ->{HashSet,TreeSet}[style="dashed",arrowtail="empty"]
+    Queue -> {PriorityQunue,LinkedList}[style="dashed",arrowtail="empty"]
+    Collection -> Map[style="dashed",label="Produce"]
+    Iterator -> Collection[style="dashed",label="Produce"]
+    Iterator -> ListIterator[style="dashed",arrowtail="empty",dir=back]
+    ListIterator -> List[style="dashed",label="Produce"]
+    {rank=same;List,ListIterator}
+    {rank=same;Collection,Map,Iterator}
+    Map ->{HashMap,TreeMap}[style="dashed",arrowtail="empty"]
+  }
+  {
+    edge[dir=back]
+    HashMap -> LinkedHashMap[arrowtail="empty"]
+    HashSet ->LinkedHashSet[arrowtail="empty"]
+  }
+
+
+}
