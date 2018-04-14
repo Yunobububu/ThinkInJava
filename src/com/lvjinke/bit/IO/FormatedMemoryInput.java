@@ -21,6 +21,7 @@ public class FormatedMemoryInput {
                         ).getBytes()
                 )
         );
+        in.close();
         while(in.available()!= 0){
             System.out.println((char)in.readByte());
         }
