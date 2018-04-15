@@ -17,4 +17,14 @@ public class RandomList<T>{
             return null;
         }
     }
+
+    public static class GenericVarargs {
+        public static <T> List<T> makeList(T... args){
+            List<T> list = new ArrayList<>();
+            for(T t: args){
+                list.add(t);
+            }
+            return list;
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package test.com.lvjinke.bit.Generics;
+package com.lvjinke.bit.Generics;
 
 import java.util.*;
 
