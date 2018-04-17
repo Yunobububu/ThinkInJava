@@ -21,7 +21,7 @@ public class QueueBehavior {
         System.out.println();
     }
     static class Gen implements Generator<String>{
-        String[] s = "one,two,three,four,five,six,seven,eight,night,ten".split(",");
+        String[] s = "one,two,three,four,five,si`x,seven,eight,night,ten".split(",");
         int i = 0;
         @Override
         public String next() {
