@@ -1,7 +1,7 @@
 package com.lvjinke.bit.Concurrency;
 
 public class LiftOff implements Runnable{
-    private int countDown = 10;
+    protected int countDown = 10;
     private static int taskCount = 0;
     private final int id = taskCount++;
     public LiftOff(){}
