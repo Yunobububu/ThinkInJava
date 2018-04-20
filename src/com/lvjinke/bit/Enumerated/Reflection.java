@@ -1,6 +1,5 @@
 package com.lvjinke.bit.Enumerated;
 
-import com.lvjinke.bit.Concurrency.ExplicitCriticalSection;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
