@@ -48,6 +48,67 @@ extends,implements,throw,throws,enum,try/catch/finally;
 * default
 
 
+#### Object
+* 所有类的基类
+* 包含方法：
+* equals()：
+
+```
+/**
+ *自反性:x.equals(x) return true;
+ *传递性:if x.equals(y) return true && y.equals(z) return true,then x.equals.(z) return true;
+ *对称性:if x.equals(y) return true ,then y.equals.(x) return true;
+ *一致性:只要equals方法没被改变，调用多少次结果都应该一样。
+ */
+public boolean equals(Object obj){
+    return (this == obj);
+}
+```
+
+* hashCode()
+* toString():
+```
+return getClass().getName() + "@" + Integer.toHexString(hashCode());
+```
+
+* wait()/wait(long timeout)/wait(long timeout,int nanos)
+```
+/**
+ *线程将进入阻塞状态并且释放(relinquish any synchoroniziton claims)当前对象上的锁。这是
+ *和sleep()不同之处。当等待时间到,notify()/notifyAll()或者Interrupted()
+ *线程将继续运行。
+ *@throws InllegalMonitorsExcetpion 如果当前线程没有当前对象的监视器(Monitor)。 
+ *@throws InterruptedException 如果当前线程被其他线程中断；
+ */
+ 
+```
+* notify()
+
+```
+/**
+ *线程只有释放当前对象的锁之后才可以运行。
+ *@throws IllegalMonitorsException 如果当前线程没有对象的锁。
+ */
+```
+
+* notifyAll()
+* getClass()
+```
+/*
+ *Class<?> getClass()
+ */
+```
+* clone()
+```
+/*
+ *clone()语义:
+ *x.clone() == x false;
+ *x.clone().equals(s) true;
+ *x.clone().getClass() == x.getClass();
+ *@throws CloneUnsupportedException 如果没实现Cloneable接口
+ /
+```
+
 
 
 
