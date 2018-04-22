@@ -108,7 +108,23 @@ return getClass().getName() + "@" + Integer.toHexString(hashCode());
  *@throws CloneUnsupportedException 如果没实现Cloneable接口
  /
 ```
+#### String
+```
+final 不可更改，重载了“+”,jvm运用的是StringBuider方法；
+一般用StringBuiler append()方法来代替“+”;线程不安全,可替换为StringBuffer;
+String 方法:
 
+```
+* split()
+* subSting(int offet)
+* charAt(int begin)
+* indexOf(int )
+```
+/**
+ *codePoints:?
+ */
+public String(int[] codePoints,int offset,int count)
+```
 
 
 
