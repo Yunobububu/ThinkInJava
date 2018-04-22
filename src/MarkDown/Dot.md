@@ -24,7 +24,8 @@
 * shape:节点的形状`shape=box|record|eclipse|plaintext|none`
 * label:显示的名字,支持`\n`换行
 * style:样式,目前用到最多的是invis
-* fillcolor:填充样式
+* fillcolor:填充样式(当style为filled时有效,[填充颜色](https://blog.csdn.net/geecky/article/details/51912111))
+* 
 
 #### 流程图
 * `a -- b`无向图

@@ -125,6 +125,19 @@ String 方法:
  */
 public String(int[] codePoints,int offset,int count)
 ```
+#### Concurrency
+* 多个线程访问同一个对象,其中有线程有写的行为。要考虑并发编程。
+* 什么是线程？为什么使用线程?线程的几个状态？怎么创建线程？中断线程？
+##### 线程
+* Java 中的线程是Thread.创建新的线程的方式：
+* 实现Runnable()接口(无返回值),run()即可。
+* 实现Runable(),新建Runable()对象,传递引用到Thread构造器中,然后start();
+* 实现Runnable(),Callable()接口，建立任务执行器,ExecutorService 然后调用execute()方法。关闭任务shutdown()/shutDownNow();
+* Exercise:查看程序中的线程;创建新线程并执行;
+* 线程的状态:Runnable() interrupted() terminated()/dead wait()  
+* 并发编程的关键词: volatile,synchronized,lock,interrupted,wait()/notify()/notifyAll()/Executor/AQS
+* 
+* 线程可见性:volatile 线程将变量刷新到内存中,其他线程对此可见。
 
 
 

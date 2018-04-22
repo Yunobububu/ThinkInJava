@@ -1,7 +1,7 @@
 digraph G {
     node[shape=record]
     {rank=same;Context;Strategy}
-    Context[label="{Context| +strategy : Strategy\l| +contextInterface()\l}"]       docs[
+    Context[label="{Context| +strategy : Strategy\l| +contextInterface()\l}"]      
       style="filled", color="gold", label="Strategy AlgorithmInterface()"
     ]
     edge [ arrowhead="none", style="dashed"]
