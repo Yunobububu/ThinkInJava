@@ -130,14 +130,114 @@ public String(int[] codePoints,int offset,int count)
 * 什么是线程？为什么使用线程?线程的几个状态？怎么创建线程？中断线程？
 ##### 线程
 * Java 中的线程是Thread.创建新的线程的方式：
-* 实现Runnable()接口(无返回值),run()即可。
+* 实现Runnable()接口(无返回值),run(),无线程行为;
 * 实现Runable(),新建Runable()对象,传递引用到Thread构造器中,然后start();
 * 实现Runnable(),Callable()接口，建立任务执行器,ExecutorService 然后调用execute()方法。关闭任务shutdown()/shutDownNow();
+* Executor(执行器):
+* 由Excutors 产生
+* `Excutors.newCachedThreadPool` 一次性预支线程分配,Executor的首选,
+* `Excutors.newFixedThreadPool` 产生固定数量的线程,用于线程数量已知的情况
+* `Excutors.newSingleThreadExecutor` 固定数量为1的FixedThreadPool,产生单一的线程。所有任务使用相同的线程,任务将排队。
+* Runnable 与Callable接口:
+* Runnable执行独立的任务但无返回值;Callable可以返回一个Future<?> 对象;
+* 
 * Exercise:查看程序中的线程;创建新线程并执行;
 * 线程的状态:Runnable() interrupted() terminated()/dead wait()  
 * 并发编程的关键词: volatile,synchronized,lock,interrupted,wait()/notify()/notifyAll()/Executor/AQS
 * 
 * 线程可见性:volatile 线程将变量刷新到内存中,其他线程对此可见。
+##### BlockingQueue:
+* ArrayBlockingQueue
+```
+final Object[] items;
+final Reentrylock lock;
+final Condition notFull;
+final Condition not Empty;
+private int count;
+public static void checkNotNull(Object v){
+    if(v == null){
+        throw new NullPointException();
+    }
+}
+public ArrayBlockQueue(int capacity,boolean fair){
+    if(capactitye <= 0){
+        throw new InllegalArgumentException();
+    }
+    this.items = new Object[cacacity];
+    lock = new Reentrylock(fair);
+    notFull = lock.newCondition();
+    notEmpty = lock.newCondition();
+}
+public ArrayBlockQueue(int capacity,boolean fair,
+                Collection<? extends E> coll){
+    this(catpicty,boolean fair);
+    final ReentrantLock lock = this.lock;
+    try{
+        lock.lock();
+        int i = 0;
+        for(E e:coll){
+            items[i++] = e;
+        }
+        count = i;
+        indexput = (i == items.length) ? 0 : i;
+    }catch(ArrayIndexOutOfBoundsExecption e){
+        throw new InllegalArgumentException();
+    }finall{
+        lock.unlock();
+    }
+    
+        
+}
+public void put(E e) throws InterruptedException{
+    checkNotNull(e);
+    final ReentrantLock lock = this.lock;
+    try{
+        lock.interrruptibly();
+        while( count = item.length){
+            notFull.await();
+            enqueue(e);
+        }
+    }finally{
+        lock.unlock;
+    }
+    
+}
+private void enqueue(E e){
+        final Object[] items = this.items;
+        items[indexput] = e;
+        if(++indexput == items.length){
+            indexput ==0;
+        }
+        count++;
+        notFull.signal();
+}
+public void take(){
+    final ReentrantLock lock = this.lock;
+    try{
+        lock.intetrruptible();
+        while(count == 0){
+            notEmpty.await();
+        }
+        dequeue();
+    }catch(){
+    }finally{
+        lock.unlock();
+    }
+}
+private void dequeue(){
+    final Object[] items = this.items;
+    items[count--] = null;
+    
+}
+
+```
+
+
+
+
+
+
+
 
 
 
