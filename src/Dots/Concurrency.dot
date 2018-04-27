@@ -1,0 +1,20 @@
+digraph Concurrency{
+  bgcolor="#f9ebf2"
+  ranksep=1
+  {
+
+    node[shape="box",fontsize="20"]
+    Executor[label="Executor\n+voidexecute(Runnable r)"]
+    ExecuotorService[label="ExecuotorService\nFuture<?> submit(Runnable r)\n+void invokAll(Collection<? extends Runnable> tasks)
+  +void invokAny(Collection<? extends Runnable> tasks)"]
+    Executor -> ExecuotorService[arrowtail="empty",dir=back]
+      Executors[label="Execuors\n-Executors()\n+newCachedThreadPool()\n+newFixedThreadPool()\n+newSingleThreadPoolExecutor()"]
+    Future -> RunnableFuture[arrowtail="empty",dir=back]
+    RunnableFuture -> FutureTask[arrowtail="empty",dir=back,style="dashed"]
+
+    ExecuotorService -> Executors[arrowtail="empty",dir=back,style="dashed"]
+
+
+  }
+
+}

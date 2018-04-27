@@ -1,0 +1,31 @@
+digraph Rdt {
+  /* Entities */
+  ranksep="0.2"
+  nodesep="0.8"
+  null1[shape="plaintext",style="invis"]
+  null2[shape="plaintext",style="invis"]
+  null3[shape="plaintext",style="invis"]
+  null4[shape="plaintext",style="invis"]
+  null1 -> null2 -> null3 -> null4[style=invis]
+  {rank=same;null2,WaitForCallingFromUpperLayer}
+  {rank=same;null4,WaitForCallingFromLowerLayer}
+
+  null2 -> WaitForCallingFromUpperLayer[style=dashed]
+  null4 -> WaitForCallingFromLowerLayer[style=dashed]
+
+  WaitForCallingFromUpperLayer  [label="WaitForCalling\nFromUpperLayer", shape="circle",fixedsize="true",width=4,fontsize=20,style=filled;]
+  WaitForCallingFromLowerLayer  [label="WaitForCalling\nFromLowerLayer", shape="circle",fixedsize="true",width=4,fontsize=20,style=filled;]
+  Sender[label="a) rdt1.0:发送端",shape="plaintext",fontsize=20]
+  Reveiver[label="b) rdt1.0:接收端",shape="plaintext",fontsize=20]
+  WaitForCallingFromUpperLayer -> Sender[style="invis"]
+  Sender -> WaitForCallingFromLowerLayer[style="invis"]
+  Sender -> WaitForCallingFromLowerLayer[style="invis"]
+  WaitForCallingFromLowerLayer -> Reveiver[style="invis"]
+  WaitForCallingFromUpperLayer -> WaitForCallingFromUpperLayer
+  [label="rdt_send(data)\n--------------------------------\npacket=make_packet(data)\nudt_send(packet)",fontsize=20]
+  WaitForCallingFromLowerLayer -> WaitForCallingFromLowerLayer
+  [label="rdt_rec(packte)\n--------------------------------\nextra_data(packet,data)\ndeliver(data)",fontsize=20]
+  title[shape="plaintext",fontsize=30,label="rdt1.0:用于完全可靠信道的协议"]
+  Reveiver -> title[style="invis",label=""]
+
+}

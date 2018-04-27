@@ -1,0 +1,44 @@
+digraph Thread {
+  bgcolor="#f9ebf2"
+  //compound = true
+
+
+  Title[shape=plaintext,fontsize=30,label="Java线程状态变迁",fontcolor="red"]
+
+
+  {
+    ranksep = 1.5
+    nodesep = 1.5
+    edge[fontsize=20]
+    node[shape = circle,fixedsize="true",width=1.6,fontsize=20]
+    style = invis;
+
+    Run[label="Running",shape="",width =1.2,height=.5,fontsize=15,style=filled,color="springgreen"]
+    Ready[label="Ready",shape="",width =1.2,height=0.5,fontsize=15,style=filled,color="springgreen"]
+    //{rank = same;Run,Ready}
+    Run -> Ready:w[label="yield()",color="springgreen",fontcolor="springgreen"]
+    Run -> Ready:e[label="系统调度",dir=back,color="springgreen",fontcolor="springgreen"]
+
+    New[label="New\n初始化"]
+    Runnable[label="Running\nReady",style="filled",color="springgreen"]
+    Waiting[label="Wating\n等待",style="filled",color="greenyellow"]
+    TimedWaiting[label="TimedWaiting\n超时等待",style="filled",color="yellowgreen"]
+    Blocked[label="Blocked",style="filled",color="violetred"]
+    Terminated[label="Terminated",style="filled",color="red"]
+    New -> Runnable[label="Thread.start()",color="springgreen",fontcolor="springgreen"]
+    Waiting -> Runnable[label="notifyAll()\nnotify()",color="springgreen",fontcolor="springgreen"]
+    Waiting -> Runnable[label="wait()\njoin()",color="red",color="greenyellow",dir="back",fontcolor="greenyellow"]
+    Runnable -> TimedWaiting[label="sleep(long)\nwait(long)\njoin(long)",color="yellowgreen",fontcolor="yellowgreen"]
+    Runnable -> TimedWaiting[label="notify()\nnotifyAll()",dir=back,color="springgreen",fontcolor="springgreen"]
+    Runnable -> Terminated:se[label="finished",color="",color="red",fontcolor="red"]
+    Runnable -> Blocked:se[label="等待进入\nsynchronized\n方法或者块",color="violetred",fontcolor="violetred"]
+    Runnable -> Blocked:nw[label="getlock",color="springgreen",dir="back",fontcolor="springgreen"]
+    TimedWaiting -> Blocked[style="invis"]
+    Title -> Run[style="invis"]
+
+    {rank=same;Runnable,Waiting,TimedWaiting}
+    {rank=same;Blocked,Terminated}
+    }
+
+
+  }
