@@ -24,8 +24,8 @@ digraph Rdt {
   WaitForCallingFromUpperLayer -> WaitForCallingFromUpperLayer
   [label="rdt_send(data)\n--------------------------------\npacket=make_packet(data)\nudt_send(packet)",fontsize=20]
   WaitForCallingFromLowerLayer -> WaitForCallingFromLowerLayer
-  [label="rdt_rec(packte)\n--------------------------------\nextra_data(packet,data)\ndeliver(data)",fontsize=20]
+  [label="rdt_rec(packet)\n--------------------------------\nextra_data(packet,data)\ndeliver(data)",fontsize=20]
   title[shape="plaintext",fontsize=30,label="rdt1.0:用于完全可靠信道的协议"]
-  Reveiver -> title[style="invis",label=""]
+  Reveiver -> title[style="invis"]
 
 }
